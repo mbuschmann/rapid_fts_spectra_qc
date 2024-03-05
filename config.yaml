@@ -1,0 +1,43 @@
+selected_site: 'ny' # choose instrument defined below
+
+location_ftsreader: '../ftsreader' # location of ftsreader to be imported
+
+window_1: [6260,6230] # zoom-in co2 window
+window_2: [6000,5940] # zoom-in ch4 window
+width_zpd: 650 # number of points zoom-in around zpd
+sigma_factor: 3 # factor to be multiplied to std.dev(ifg) to choose y-axis limits for ifg overview plot
+
+ny: {
+    datetime_start: '2023-03-31',
+    datetime_stop: '2023-04-01',
+    ifgfolder: 'slices/nyalesund_2023/', # where to find ifg or slice files, irrelevant if spc contain ifgs
+    spcfolder: 'spectra/nyalesund_2023/', # where to find spc files
+    outfolder: 'info_pics_ny_2023', # where to store result images
+    ifgsource: 'slices', # type of source of ifg: "spcfiles", "slices" or "ifgfiles"
+    # how to convert between spc filenames and ifg filenames
+    # the lambda expression will be evaluated
+    # ftsreader assumes that the slices are all in one folder: yymmdd.n/scan/...
+    convert_spc_filename_to_ifg: "lambda filename: filename[4:10]+'.'+str(int((filename[filename.rfind('.')+1:-1])))", 
+    whitelist_fname: 'whitelist_ny_2023.dat',# outputfilename for whitelisted spectra
+    blacklist_fname: 'blacklist_ny_2023.dat',# outputfilename for whitelisted spectra
+    }
+
+or: {
+    datetime_start: '2019-04-11',
+    datetime_stop: '2023-04-12',
+    ifgfolder: '/spectren/iup003-orleans/Sun_HCl11_scd-0_evacuated/orleans_2019/', # where to find ifg or slice files, irrelevant if spc contain ifgs
+    spcfolder: '/procdata/iup003-orleans/Sun_HCl11_scd-0_evac/orleans_2019/', # where to find spc files
+    outfolder: 'info_pics_or_2023', # where to store result images
+    ifgsource: 'slices', # type of source of ifg: "spcfiles", "slices" or "ifgfiles"
+    # how to convert between spc filenames and ifg filenames
+    # the lambda expression will be evaluated
+    # ftsreader assumes that the slices are all in one folder: yymmdd.n/scan/...
+    convert_spc_filename_to_ifg: "lambda filename: filename[4:10]+'.'+str(int((filename[filename.rfind('.')+1:-1])))", 
+    whitelist_fname: 'whitelist_or_2023.dat',# outputfilename for whitelisted spectra
+    blacklist_fname: 'blacklist_or_2023.dat',# outputfilename for whitelisted spectra
+    }
+
+
+
+
+
